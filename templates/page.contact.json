@@ -1,0 +1,18 @@
+{
+  "sections": {
+    "main": {
+      "type": "page__contact",
+      "custom_css": [
+
+      ],
+      "settings": {
+        "spacing_top": 60,
+        "spacing_bottom": 60,
+        "color_scheme": "color__bg-body color__text"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

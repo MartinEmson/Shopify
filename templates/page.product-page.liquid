@@ -1,0 +1,98 @@
+{% comment %}
+  File: page.product-page.liquid
+  Description: Custom product page template
+{% endcomment %}
+
+<!doctype html>
+<html>
+  <head>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+      .wrapper {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      .product-container {
+        display: flex;
+        flex-wrap: wrap;
+      }
+      .product-image {
+        background-color: gray;
+        height: 500px;
+        width: 500px;
+      }
+      .product-info {
+        flex: 1;
+        padding-left: 20px;
+      }
+      .product-info h1 {
+        font-size: 24px;
+        margin-top: 0;
+      }
+      .product-info p {
+        margin-top: 10px;
+      }
+      .options {
+        margin-top: 20px;
+      }
+      .accordion {
+        cursor: pointer;
+        padding: 10px;
+        background-color: #eee;
+      }
+      .accordion-content {
+        display: none;
+        padding: 20px;
+        background-color: #f9f9f9;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="product-container">
+        <div class="product-image">
+          <img
+            alt="{{ product.title }}"
+            src="{{ product.featured_image.src | image_url: '600x' }}"
+            width="{{ product.featured_image.width }}"
+            height="{{ product.featured_image.height }}"
+          >
+        </div>
+
+        <div class="product-info">
+          <h1>{{ product.title }}</h1>
+          <p>{{ product.description }}</p>
+          <div class="options">
+            <h3>Options</h3>
+            <select name="variant-select" id="variant-select">
+              {% for variant in product.variants %}
+                <option value="{{ variant.id }}">{{ variant.title }} - {{ variant.price }}</option>
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="accordion">More Details</div>
+      <div class="accordion-content">
+        <p>Additional product information here.</p>
+      </div>
+    </div>
+
+    <script>
+      document.querySelector('.accordion').addEventListener('click', function () {
+        this.classList.toggle('active');
+        var content = this.nextElementSibling;
+        if (content.style.display === 'block') {
+          content.style.display = 'none';
+        } else {
+          content.style.display = 'block';
+        }
+      });
+    </script>
+  </body>
+</html>
